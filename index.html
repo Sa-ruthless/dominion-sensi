@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#09090d">
+<title>DOMINION SENSI — Free Fire MAX</title>
+<style>
+:root{--bg:#09090d;--panel:#14141c;--panel2:#1b1b25;--red:#ff334f;--orange:#ff7048;--text:#f6f6fa;--muted:#9b9ba9;--line:#2b2b37}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 80% -10%,#3b101d 0,transparent 42%),var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+.wrap{max-width:760px;margin:auto;padding:22px 16px 40px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:25px}
+.logo{font-weight:950;letter-spacing:1.5px;font-size:18px}.logo span{color:var(--red)}.tag{font-size:10px;color:#ff9aaa;border:1px solid #67303a;background:#24131a;padding:6px 9px;border-radius:30px;letter-spacing:1px}
+.hero{padding:26px 22px;border:1px solid #49202a;border-radius:22px;background:linear-gradient(135deg,#251019,#15151d 65%);position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;width:180px;height:180px;border-radius:50%;background:#ff334f18;right:-65px;top:-65px}
+.kicker{color:#ff8b9b;font-size:11px;letter-spacing:2px;font-weight:800}.hero h1{font-size:clamp(28px,7vw,43px);line-height:1.02;margin:10px 0}.hero h1 em{font-style:normal;color:var(--red)}.hero p{color:#b8b8c4;font-size:13px;line-height:1.55;max-width:480px;margin:0}
+.section-title{font-size:13px;letter-spacing:1.4px;color:#c9c9d3;font-weight:850;margin:24px 2px 12px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:17px;padding:17px;margin-bottom:12px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}.field label{display:block;color:var(--muted);font-size:11px;margin:0 0 7px}
+select{width:100%;background:var(--panel2);color:var(--text);border:1px solid #353542;border-radius:11px;padding:12px;font-size:13px;outline:none}
+button{border:0;border-radius:12px;padding:13px 16px;font-weight:850;cursor:pointer;font-size:13px}
+.primary{width:100%;color:white;background:linear-gradient(90deg,var(--red),#ff6849);margin-top:14px;box-shadow:0 8px 24px #ff334f24}
+.secondary{background:#262631;color:#f2f2f7;border:1px solid #3a3a48}
+.stat-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.stat-head strong{font-size:14px}.value{font-size:20px;font-weight:900;color:#ff667a;font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;accent-color:var(--red);margin:7px 0 2px}
+.range-labels{display:flex;justify-content:space-between;color:#777785;font-size:10px}
+.result-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.result{background:var(--panel2);border:1px solid #30303c;border-radius:13px;padding:13px}
+.result small{color:var(--muted);font-size:10px;letter-spacing:.7px}.result b{display:block;font-size:25px;margin-top:4px;font-variant-numeric:tabular-nums}
+.actions{display:flex;gap:9px;margin-top:13px}.actions button{flex:1}
+.note{font-size:11px;color:#888896;line-height:1.5;margin:13px 2px 0}
+footer{text-align:center;color:#666674;font-size:10px;margin-top:24px;letter-spacing:.8px}
+@media(max-width:430px){.grid{grid-template-columns:1fr 1fr}.card{padding:14px}.hero{padding:23px 18px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><div class="logo">DOMINION <span>SENSI</span></div><div class="tag">FF MAX • TOOL</div></div>
+  <section class="hero">
+    <div class="kicker">AIM SMART. PLAY YOUR WAY.</div>
+    <h1>YOUR SENSI.<br><em>YOUR CONTROL.</em></h1>
+    <p>Create a starting sensitivity setup for your play style. Generate, adjust and copy your settings in seconds.</p>
+  </section>
+
+  <div class="section-title">01 / PLAYER SETUP</div>
+  <section class="card">
+    <div class="grid">
+      <div class="field"><label for="device">DEVICE</label><select id="device"><option value="a22">Samsung Galaxy A22 5G</option><option value="samsung">Other Samsung</option><option value="android">Other Android</option><option value="custom">Custom device</option></select></div>
+      <div class="field"><label for="fingers">FINGER SETUP</label><select id="fingers"><option value="2">2 Fingers</option><option value="3">3 Fingers</option><option value="4">4 Fingers</option></select></div>
+      <div class="field"><label for="style">PLAY STYLE</label><select id="style"><option value="balanced">Balanced</option><option value="rush">Rusher / Drag Headshot</option><option value="precision">Precision / Tap Headshot</option><option value="sniper">Sniper Focus</option></select></div>
+      <div class="field"><label for="scale">SENSITIVITY SCALE</label><select id="scale"><option value="200">0–200 (Your game scale)</option><option value="100">0–100</option></select></div>
+    </div>
+    <button class="primary" id="generate">⚡ GENERATE MY SENSI</button>
+  </section>
+
+  <div class="section-title">02 / YOUR SENSITIVITY</div>
+  <section class="card">
+    <div class="result-grid" id="results">
+      <div class="result"><small>GENERAL</small><b id="general">185</b></div>
+      <div class="result"><small>RED DOT</small><b id="red">180</b></div>
+      <div class="result"><small>2X SCOPE</small><b id="two">175</b></div>
+      <div class="result"><small>4X SCOPE</small><b id="four">165</b></div>
+      <div class="result"><small>SNIPER SCOPE</small><b id="sniper">90</b></div>
+      <div class="result"><small>FREE LOOK</small><b id="free">150</b></div>
+    </div>
+    <p class="note">These are suggested starting values, not guaranteed headshots. Fine-tune them in Training Ground based on your aim and device response.</p>
+    <div class="actions"><button class="secondary" id="copy">▣ COPY SENSI</button><button class="secondary" id="reset">↺ RESET</button></div>
+  </section>
+
+  <div class="section-title">03 / FIRE BUTTON</div>
+  <section class="card">
+    <div class="stat-head"><strong>Fire Button Size</strong><span class="value" id="fireVal">48%</span></div>
+    <input id="fire" type="range" min="30" max="70" value="48">
+    <div class="range-labels"><span>30%</span><span>70%</span></div>
+    <p class="note">HUD preference depends on finger placement and comfort. Try small changes rather than copying another player's layout exactly.</p>
+  </section>
+
+  <footer>DOMINION SENSI • FAN-MADE TOOL • NOT AFFILIATED WITH GARENA</footer>
+</div>
+<script>
+const ids=["general","red","two","four","sniper","free"];
+const base={
+ balanced:[185,180,175,165,90,150],
+ rush:[195,190,185,175,85,160],
+ precision:[175,165,155,145,100,140],
+ sniper:[170,160,150,165,115,135]
+};
+function render(vals){ids.forEach((id,i)=>document.getElementById(id).textContent=vals[i]);}
+function generate(){
+ const style=document.getElementById("style").value;
+ const scale=Number(document.getElementById("scale").value);
+ const device=document.getElementById("device").value;
+ const fingers=Number(document.getElementById("fingers").value);
+ let vals=[...base[style]];
+ if(device==="a22"){vals=vals.map((v,i)=>v+[0,0,-2,-3,0,-2][i]);}
+ else if(device==="android"){vals=vals.map(v=>v-3);}
+ else if(device==="custom"){vals=vals.map(v=>v-2);}
+ if(fingers===3) vals=vals.map((v,i)=>v+[0,0,1,1,0,2][i]);
+ if(fingers===4) vals=vals.map((v,i)=>v+[0,1,2,2,2,3][i]);
+ if(scale===100) vals=vals.map(v=>Math.round(v/2));
+ vals=vals.map(v=>Math.max(0,Math.min(scale,v)));
+ render(vals);
+}
+document.getElementById("generate").addEventListener("click",generate);
+document.getElementById("fire").addEventListener("input",e=>document.getElementById("fireVal").textContent=e.target.value+"%");
+document.getElementById("copy").addEventListener("click",async()=>{
+ const scale=document.getElementById("scale").value;
+ const labels=["General","Red Dot","2x Scope","4x Scope","Sniper Scope","Free Look"];
+ const lines=labels.map((l,i)=>l+": "+document.getElementById(ids[i]).textContent);
+ lines.push("Fire Button: "+document.getElementById("fire").value+"%");
+ try{await navigator.clipboard.writeText("DOMINION SENSI\n"+lines.join("\n"));document.getElementById("copy").textContent="✓ COPIED!";}
+ catch(e){document.getElementById("copy").textContent="COPY NOT AVAILABLE";}
+ setTimeout(()=>document.getElementById("copy").textContent="▣ COPY SENSI",1600);
+});
+document.getElementById("reset").addEventListener("click",()=>{document.getElementById("style").value="balanced";document.getElementById("fingers").value="2";document.getElementById("scale").value="200";document.getElementById("device").value="a22";document.getElementById("fire").value=48;document.getElementById("fireVal").textContent="48%";generate();});
+generate();
+</script>
+</body>
+</html>
